@@ -368,6 +368,7 @@ public final class DynamicHub implements AnnotatedElement, java.lang.reflect.Typ
         return value ? flagMask : 0;
     }
 
+    @Uninterruptible(reason = "Called from uninterruptible code.", mayBeInlined = true)
     private static boolean isFlagSet(byte flags, int flagBit) {
         int flagMask = 1 << flagBit;
         return (flags & flagMask) != 0;
@@ -517,6 +518,7 @@ public final class DynamicHub implements AnnotatedElement, java.lang.reflect.Typ
         return metaType;
     }
 
+    @Uninterruptible(reason = "Called from uninterruptible code.", mayBeInlined = true)
     public String getSourceFileName() {
         return sourceFileName;
     }
@@ -763,6 +765,7 @@ public final class DynamicHub implements AnnotatedElement, java.lang.reflect.Typ
 
     @Substitute
     @TargetElement(onlyWith = JDK17OrLater.class)
+    @Uninterruptible(reason = "Called from uninterruptible code.", mayBeInlined = true)
     public boolean isHidden() {
         return isFlagSet(flags, IS_HIDDEN_FLAG_BIT);
     }

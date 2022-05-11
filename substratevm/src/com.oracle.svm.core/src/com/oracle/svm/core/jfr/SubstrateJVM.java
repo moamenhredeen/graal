@@ -166,6 +166,11 @@ public class SubstrateJVM {
     }
 
     @Fold
+    public static JfrStackTraceRepository getStackTraceRepo() {
+        return get().stackTraceRepo;
+    }
+
+    @Fold
     public static JfrLogging getJfrLogging() {
         return get().jfrLogging;
     }
@@ -253,7 +258,7 @@ public class SubstrateJVM {
     /** See {@link JVM#getStackTraceId}. */
     @Uninterruptible(reason = "Called from uninterruptible code.", mayBeInlined = true)
     public long getStackTraceId(int skipCount) {
-        return stackTraceRepo.getStackTraceId(skipCount, false);
+        return stackTraceRepo.getStackTraceId(skipCount);
     }
 
     @Uninterruptible(reason = "Called from uninterruptible code.", mayBeInlined = true)
